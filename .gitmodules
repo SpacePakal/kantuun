@@ -5,3 +5,10 @@
 	path = kantuun_blog/public
 	url = https://github.com/SpacePakal/spacepakal.github.io.git
 	branch = main
+[submodule "kantuun_blog/themes/simplog"]
+	path = kantuun_blog/themes/simplog
+	url = https://github.com/michimani/simplog.git
+[submodule "kantuun_blog/themes/hermit-v2"]
+	path = kantuun_blog/themes/hermit-v2
+	url = https://github.com/1bl4z3r/hermit-V2
+	branch = main
