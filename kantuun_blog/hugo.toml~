@@ -1,0 +1,6 @@
+baseURL = 'https://spacepakal.github.io/'
+languageCode = 'en-us'
+title = 'KanTuun'
+theme= "ananke"
+[params]
+  social = true
