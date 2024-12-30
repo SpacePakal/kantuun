@@ -1,6 +1,11 @@
 baseURL = 'https://spacepakal.github.io/'
 languageCode = 'en-us'
 title = 'KanTuun'
-theme= "PaperMod"
+theme= "nostyle"
+defaultContentLanguage= "en"
 [params]
-  social = true
+  social = [
+    { name = "github", url = "https://github.com/your-username" },
+    { name = "twitter", url = "https://twitter.com/your-username" },
+    { name = "linkedin", url = "https://linkedin.com/in/your-username" }
+  ]
