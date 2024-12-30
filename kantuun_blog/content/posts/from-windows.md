@@ -1,8 +1,9 @@
-+++
-date = '2024-12-29T19:58:39-05:00'
-draft = false
-title = 'From Windows'
-+++
+---
+date : '2024-12-29T19:58:39-05:00'
+draft : false
+title : 'From Windows'
+categories : [FromWindows]
+---
 
 
 # This is a post from windows 

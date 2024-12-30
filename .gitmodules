@@ -21,3 +21,9 @@
 [submodule "kantuun_blog/themes/nostyle"]
 	path = kantuun_blog/themes/nostyle
 	url = https://github.com/hanwenguo/hugo-theme-nostyleplease.git
+[submodule "kantuun_blog/themes/devise"]
+	path = kantuun_blog/themes/devise
+	url = https://github.com/austingebauer/devise.git
+[submodule "kantuun_blog/themes/enchanted-lowkey"]
+	path = kantuun_blog/themes/enchanted-lowkey
+	url = https://github.com/nixentric/Lowkey-Hugo-Theme.git
