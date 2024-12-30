@@ -1,7 +1,11 @@
-date = '2024-10-31T15:42:34-04:00'
-draft = False
-title = 'New Post'
-
++++
+title = "New Post"
+date = 2024-10-31T15:08:18-04:00
+images = []
+tags = []
+categories = []
+draft = false
++++
 
 ## This is also a new post.
 
