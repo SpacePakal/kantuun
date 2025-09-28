@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "891347ec6a9d83c6",
+    "type": "split",
+    "children": [
+      {
+        "id": "2f7969db9ac7abe6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "42213b9821bb4890",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/about.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "about"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "aaf475356d0aa404",
+    "type": "split",
+    "children": [
+      {
+        "id": "4050cde2a1b99537",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b2d765333b9934c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "81ee0dff6e3eb429",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "976926c5fae463a2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ac862546707e16e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "c2d31001d70a4c13",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f42c93f374f84dac",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/about.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for about"
+            }
+          },
+          {
+            "id": "029f32bda49e6490",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/about.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from about"
+            }
+          },
+          {
+            "id": "b21faf3079e812e3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "05ad7034cfa30b9f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/about.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of about"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "42213b9821bb4890",
+  "lastOpenFiles": [
+    "public/webfonts/fa-regular-400.ttf",
+    "public/webfonts/fa-v4compatibility.woff2",
+    "public/webfonts/fa-v4compatibility.ttf",
+    "public/webfonts/fa-solid-900.woff2",
+    "public/webfonts/fa-solid-900.ttf",
+    "public/webfonts/fa-regular-400.woff2",
+    "public/webfonts/fa-brands-400.woff2",
+    "public/webfonts/fa-brands-400.ttf",
+    "public/webfonts",
+    "public/posts/untitled/index.html",
+    "public/posts/untitled",
+    "public/images/avatar.png",
+    "themes/devise/static/images/avatar.png",
+    "themes/devise/node_modules/popper.js/README.md",
+    "themes/devise/node_modules/jquery/README.md",
+    "themes/devise/node_modules/bootstrap/README.md",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/z.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/yin-yang.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/yen-sign.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/y.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/xmarks-lines.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/xmark.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/x.svg",
+    "themes/devise/node_modules/@fortawesome/fontawesome-free/svgs/solid/x-ray.svg",
+    "themes/devise/exampleSite/content/post/rich-content.md",
+    "themes/devise/exampleSite/content/post/placeholder-text.md",
+    "themes/devise/exampleSite/content/post/_index.md",
+    "themes/devise/exampleSite/content/post/markdown-syntax.md",
+    "themes/devise/exampleSite/content/post/emoji-support.md",
+    "themes/devise/exampleSite/content/homepage/work.md",
+    "themes/devise/exampleSite/content/homepage/index.md",
+    "themes/devise/exampleSite/content/homepage/about.md",
+    "themes/devise/exampleSite/content/archives.md",
+    "themes/devise/exampleSite/content/_index.md",
+    "themes/devise/exampleSite/content/about.md",
+    "themes/devise/archetypes/default.md",
+    "themes/devise/README.md"
+  ]
+}
