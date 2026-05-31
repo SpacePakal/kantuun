@@ -1,10 +1,6 @@
 [submodule "kantuun_blog/themes/ananke"]
 	path = kantuun_blog/themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
-[submodule "kantuun_blog/public"]
-	path = kantuun_blog/public
-	url = git@github.com:SpacePakal/spacepakal.github.io.git
-	branch = main
 [submodule "kantuun_blog/themes/simplog"]
 	path = kantuun_blog/themes/simplog
 	url = https://github.com/michimani/simplog.git
