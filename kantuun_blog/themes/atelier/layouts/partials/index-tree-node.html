@@ -1,0 +1,57 @@
+{{ $node := .node }}
+{{ $level := .level | default 0 }}
+
+<section class="index-node index-node--level-{{ $level }}">
+    <div class="index-node__header">
+        <p class="eyebrow">{{ if eq $level 0 }}Layer{{ else }}Sub-layer{{ end }}</p>
+        <h2 class="index-node__title">{{ $node.title }}</h2>
+        {{ with $node.description }}
+            <p class="index-node__description">{{ . }}</p>
+        {{ end }}
+    </div>
+
+    {{ with $node.posts }}
+        <div class="index-node__posts">
+            {{ range . }}
+                {{ $post := site.GetPage (printf "/posts/%s" .) }}
+                {{ if $post }}
+                    <article class="linked-post">
+                        <div class="post-card__meta">
+                            {{ with index $post.Params.categories 0 }}
+                                <span>{{ . | humanize | upper }}</span>
+                                <span>/</span>
+                            {{ end }}
+                            <span>{{ $post.Date.Format "Jan 2, 2006" }}</span>
+                            <span>/</span>
+                            <span>{{ $post.ReadingTime }} min read</span>
+                        </div>
+                        <h3 class="linked-post__title">
+                            <a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+                        </h3>
+                        {{ with ($post.Params.summary | default $post.Summary) }}
+                            <p class="linked-post__summary">{{ printf "%s" . | plainify | htmlUnescape | truncate 180 }}</p>
+                        {{ end }}
+                    </article>
+                {{ else }}
+                    <article class="linked-post linked-post--pending">
+                        <div class="post-card__meta">
+                            <span>WRITING PIPELINE</span>
+                            <span>/</span>
+                            <span>Not yet promoted</span>
+                        </div>
+                        <h3 class="linked-post__title">{{ . | humanize }}</h3>
+                        <p class="linked-post__summary">This idea belongs in the map, but the post is still outside Hugo content. Promote it when you want it to become a live destination.</p>
+                    </article>
+                {{ end }}
+            {{ end }}
+        </div>
+    {{ end }}
+
+    {{ with $node.children }}
+        <div class="index-node__children">
+            {{ range . }}
+                {{ partial "index-tree-node.html" (dict "node" . "level" (add $level 1)) }}
+            {{ end }}
+        </div>
+    {{ end }}
+</section>

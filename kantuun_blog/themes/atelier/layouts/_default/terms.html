@@ -1,0 +1,15 @@
+{{ define "main" }}
+    <section class="page-intro">
+        <p class="eyebrow">{{ .Data.Plural | humanize }}</p>
+        <h1>{{ .Title }}</h1>
+    </section>
+
+    <section class="term-grid" aria-label="{{ .Title }}">
+        {{ range .Data.Terms.Alphabetical }}
+            <a class="term-card" href="{{ .Page.RelPermalink }}">
+                <span class="term-card__name">{{ .Page.Title | humanize }}</span>
+                <span class="term-card__count">{{ .Count }} posts</span>
+            </a>
+        {{ end }}
+    </section>
+{{ end }}

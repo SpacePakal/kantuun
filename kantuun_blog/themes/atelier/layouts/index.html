@@ -1,0 +1,16 @@
+{{ define "main" }}
+    <section class="home-intro">
+        <p class="eyebrow">Journal</p>
+        <h1>{{ .Site.Params.header_title }}</h1>
+        {{ with .Site.Params.header_subtitle }}
+            <p class="intro-copy">{{ . }}</p>
+        {{ end }}
+    </section>
+
+    <section class="post-feed" aria-label="Recent posts">
+        {{ $pages := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+        {{ range $pages.ByDate.Reverse }}
+            {{- partial "post-card.html" . -}}
+        {{ end }}
+    </section>
+{{ end }}

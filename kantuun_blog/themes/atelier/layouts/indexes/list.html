@@ -1,0 +1,24 @@
+{{ define "main" }}
+    <section class="page-intro">
+        <p class="eyebrow">Indexes</p>
+        <h1>{{ .Title }}</h1>
+        {{ with .Content }}
+            <div class="intro-copy">{{ . }}</div>
+        {{ end }}
+    </section>
+
+    <section class="index-grid" aria-label="Indexes">
+        {{ range .Pages.ByTitle }}
+            <article class="index-card">
+                <p class="eyebrow">Concept Map</p>
+                <h2 class="index-card__title">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </h2>
+                {{ with .Params.summary }}
+                    <p class="index-card__summary">{{ . }}</p>
+                {{ end }}
+                <a class="index-card__link" href="{{ .RelPermalink }}">Open index</a>
+            </article>
+        {{ end }}
+    </section>
+{{ end }}

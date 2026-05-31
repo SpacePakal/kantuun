@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ if .Site.LanguageCode }}{{ .Site.LanguageCode }}{{ else }}en{{ end }}">
+    {{- partial "head.html" . -}}
+    <body>
+        <div class="site-shell">
+            {{- partial "header.html" . -}}
+            <main class="site-main">
+                {{- block "main" . }}{{- end }}
+            </main>
+            {{- partial "footer.html" . -}}
+        </div>
+    </body>
+</html>

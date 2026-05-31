@@ -1,0 +1,34 @@
+{{ define "main" }}
+    <article class="index-shell">
+        <header class="index-header">
+            <p class="eyebrow">Index</p>
+            <h1>{{ .Title }}</h1>
+            {{ with .Params.summary }}
+                <p class="article-subtitle">{{ . }}</p>
+            {{ end }}
+            <button class="mindmap-launch" type="button" data-mindmap-open>
+                Open mind map
+            </button>
+        </header>
+
+        <div class="index-body" data-index-content>
+            {{ .Content }}
+        </div>
+    </article>
+
+    <div class="mindmap-overlay" data-mindmap-overlay hidden>
+        <div class="mindmap-overlay__backdrop" data-mindmap-close></div>
+        <div class="mindmap-overlay__panel" role="dialog" aria-modal="true" aria-label="Mind map view">
+            <div class="mindmap-overlay__header">
+                <p class="eyebrow">Mind Map</p>
+                <button class="mindmap-overlay__close" type="button" data-mindmap-close>
+                    Close
+                </button>
+            </div>
+            <div class="mindmap-overlay__body">
+                <div class="mindmap-canvas" data-mindmap-canvas></div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ "js/index-mindmap.js" | relURL }}" defer></script>
+{{ end }}

@@ -1,0 +1,50 @@
+{{ define "main" }}
+    {{ $toc := .TableOfContents }}
+    {{ $hasOutline := in $toc "<ul>" }}
+
+    <div class="article-layout{{ if $hasOutline }} has-outline{{ end }}">
+        <article class="article-shell">
+            <header class="article-header">
+                {{ with index .Params.categories 0 }}
+                    <p class="eyebrow">{{ . | humanize }}</p>
+                {{ end }}
+                <h1>{{ .Title }}</h1>
+                {{ with .Params.subtitle }}
+                    <p class="article-subtitle">{{ . }}</p>
+                {{ end }}
+                <div class="article-meta">
+                    <span>{{ .Date.Format "January 2, 2006" }}</span>
+                    <span>{{ .ReadingTime }} min read</span>
+                    {{ with .Params.tags }}
+                        <span>{{ delimit . ", " }}</span>
+                    {{ end }}
+                </div>
+            </header>
+
+            {{ if $hasOutline }}
+                <details class="outline-drawer" data-outline>
+                    <summary>Outline</summary>
+                    <div class="outline-drawer__panel" data-outline-tree>
+                        {{ $toc }}
+                    </div>
+                </details>
+            {{ end }}
+
+            <div class="article-body">
+                {{ .Content }}
+            </div>
+        </article>
+
+        {{ if $hasOutline }}
+            <aside class="article-outline" aria-label="Page outline">
+                <div class="article-outline__inner">
+                    <p class="article-outline__label">Outline</p>
+                    <div class="article-outline__nav" data-outline-tree>
+                        {{ $toc }}
+                    </div>
+                </div>
+            </aside>
+            <script src="{{ "js/outline.js" | relURL }}" defer></script>
+        {{ end }}
+    </div>
+{{ end }}
