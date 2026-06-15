@@ -2,32 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on KanTuun</title>
-    <link>https://spacepakal.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on KanTuun</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://spacepakal.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Post Alpha</title>
-      <link>https://spacepakal.github.io/posts/202605311113-post_alpha/</link>
-      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://spacepakal.github.io/posts/202605311113-post_alpha/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This is post alpha. It links to &lt;a href=&#34;https://spacepakal.github.io/posts/202605311114-post_beta/&#34;&gt;Post Beta&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Post Beta</title>
-      <link>https://spacepakal.github.io/posts/202605311114-post_beta/</link>
-      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://spacepakal.github.io/posts/202605311114-post_beta/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This is post beta. It links back to &lt;a href=&#34;https://spacepakal.github.io/posts/202605311113-post_alpha/&#34;&gt;Post Alpha&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Post Gamma</title>
-      <link>https://spacepakal.github.io/posts/202605311115-post_gamma/</link>
-      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://spacepakal.github.io/posts/202605311115-post_gamma/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This is post gamma. It has an image below.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;assets/Pasted_image_20260531111519.png&#34; alt=&#34;Pasted image 20260531111519&#34;&gt;&lt;/p&gt;</description>
-    </item>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

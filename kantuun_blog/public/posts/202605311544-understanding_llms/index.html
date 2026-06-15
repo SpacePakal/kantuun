@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Understanding LLMs From the Ground Up | KanTuun</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hardware, Training, and Inference">
+    
+    <link rel="stylesheet" href="/css/main.min.fd5b7f3ac657bc4d0d5ad06b70679ab50207e2a048fa5914b7e67dd7e149301b.css" integrity="sha256-/Vt/OsZXvE0NWtBrcGeatQIH4qBI&#43;lkUt&#43;Z91&#43;FJMBs=">
+    
+</head>
+<body>
+        <div class="page-frame">
+            <div class="page-shell"><header class="site-header">
+    <div class="site-identity">
+        <a class="site-title" href="/">Space Pakal</a>
+        
+            <p class="site-subtitle">Notes on learning, experiments, and technical writing.</p>
+        
+    </div>
+    
+        <nav class="site-nav" aria-label="Primary navigation">
+            
+            
+                <a class="site-nav__link" href="/about/">About</a>
+            
+                <a class="site-nav__link" href="/posts/">Posts</a>
+            
+                <a class="site-nav__link" href="/categories/">Categories</a>
+            
+                <a class="site-nav__link" href="/indexes/">Indexes</a>
+            
+        </nav>
+    
+</header>
+<main class="site-main">
+    
+    
+
+    <div class="article-layout has-outline">
+        <article class="article">
+            <header class="article-header">
+                <div class="article-meta-row">
+                    <time class="article-date" datetime="2026-05-31">May 31, 2026</time>
+                    
+                </div>
+                <h1>Understanding LLMs From the Ground Up</h1>
+                
+                    <p class="article-description">Hardware, Training, and Inference</p>
+                
+            </header>
+
+            
+                <details class="outline-accordion">
+                    <summary>Outline</summary>
+                    <div class="outline-accordion__panel">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-the-two-lives-of-a-model-training-vs-running">1. The Two Lives of a Model: Training vs. Running</a>
+      <ul>
+        <li><a href="#11-training-teaching-the-model">1.1 Training: Teaching the Model</a></li>
+        <li><a href="#12-inference-running-the-model">1.2 Inference: Running the Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-memory-the-runtime-dimension">2. Memory: The Runtime Dimension</a>
+      <ul>
+        <li><a href="#21-what-ram-controls-at-inference-time">2.1 What RAM Controls at Inference Time</a></li>
+        <li><a href="#22-what-ram-cannot-do">2.2 What RAM Cannot Do</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-model-size-and-precision-weights-as-data">3. Model Size and Precision: Weights as Data</a>
+      <ul>
+        <li><a href="#31-how-model-size-maps-to-parameters">3.1 How Model Size Maps to Parameters</a></li>
+        <li><a href="#32-quantization-trading-precision-for-fit">3.2 Quantization: Trading Precision for Fit</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-hardware-archetypes-and-their-llm-role">4. Hardware Archetypes and Their LLM Role</a>
+      <ul>
+        <li><a href="#41-discrete-nvidia-gpu">4.1 Discrete NVIDIA GPU</a></li>
+        <li><a href="#42-unified-memory-apple-silicon-framework-max">4.2 Unified Memory (Apple Silicon, Framework Max+)</a></li>
+        <li><a href="#43-cloud-gpu-runpod-lambda-labs-vastai">4.3 Cloud GPU (RunPod, Lambda Labs, Vast.ai)</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-the-intelligence-ceiling-fixed-at-training">5. The Intelligence Ceiling: Fixed at Training</a>
+      <ul>
+        <li><a href="#51-what-training-defines-forever">5.1 What Training Defines Forever</a></li>
+        <li><a href="#52-what-runtime-can-tune">5.2 What Runtime Can Tune</a></li>
+        <li><a href="#53-the-core-mental-model">5.3 The Core Mental Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-learning-resources-for-first-principles">6. Learning Resources for First Principles</a>
+      <ul>
+        <li><a href="#61-bottom-up-build-a-gpt-from-scratch">6.1 Bottom-Up: Build a GPT from Scratch</a></li>
+        <li><a href="#62-top-down-train-real-models-first-understand-later">6.2 Top-Down: Train Real Models First, Understand Later</a></li>
+        <li><a href="#63-how-they-complement-each-other">6.3 How They Complement Each Other</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            
+
+            <div class="article-body">
+                <h2 id="1-the-two-lives-of-a-model-training-vs-running">1. The Two Lives of a Model: Training vs. Running</h2>
+<h3 id="11-training-teaching-the-model">1.1 Training: Teaching the Model</h3>
+<h4 id="111-what-training-actually-does">1.1.1 What Training Actually Does</h4>
+<ul>
+<li>Billions of forward and backward passes</li>
+<li>Weights are updated iteratively via backpropagation</li>
+<li>The model&rsquo;s intelligence, knowledge, and reasoning ceiling are set here — permanently</li>
+</ul>
+<h4 id="112-why-training-is-compute-bound">1.1.2 Why Training is Compute-Bound</h4>
+<ul>
+<li>Requires massive parallelism: gradient calculations, weight updates, activation storage</li>
+<li>The bottleneck is raw computational throughput (TFLOPS)</li>
+<li>VRAM must hold: weights + gradients + activations + optimizer states (4–6x model size)</li>
+</ul>
+<h4 id="113-why-training-needs-a-dedicated-gpu">1.1.3 Why Training Needs a Dedicated GPU</h4>
+<ul>
+<li>The entire ecosystem (PyTorch, JAX, LoRA, QLoRA) is built around NVIDIA CUDA</li>
+<li>Apple Silicon (MLX) and integrated GPUs work but are significantly slower</li>
+<li>An older CUDA GPU (e.g. RTX 2070 Super) outperforms modern integrated GPUs for training</li>
+</ul>
+<hr>
+<h3 id="12-inference-running-the-model">1.2 Inference: Running the Model</h3>
+<h4 id="121-what-inference-actually-does">1.2.1 What Inference Actually Does</h4>
+<ul>
+<li>Weights are frozen — only a forward pass happens</li>
+<li>Each token generated requires reading the full model weights from memory</li>
+<li>The bottleneck is how fast you can move data, not how fast you can compute</li>
+</ul>
+<h4 id="122-why-inference-is-memory-bandwidth-bound">1.2.2 Why Inference is Memory-Bandwidth-Bound</h4>
+<ul>
+<li>Speed depends on how quickly weights stream into compute units</li>
+<li>Unified memory architectures (Apple Silicon, Framework) have high bandwidth to integrated GPU</li>
+<li>This is why they punch above their weight for inference despite weaker compute</li>
+</ul>
+<h4 id="123-the-kv-cache-where-your-context-lives">1.2.3 The KV Cache: Where Your Context Lives</h4>
+<ul>
+<li>Every token in the active conversation is stored in RAM as a key-value cache</li>
+<li>Longer context = more RAM consumed at runtime</li>
+<li>This is why a model trained with 128K context may only handle 8K in practice on limited RAM</li>
+</ul>
+<hr>
+<h2 id="2-memory-the-runtime-dimension">2. Memory: The Runtime Dimension</h2>
+<h3 id="21-what-ram-controls-at-inference-time">2.1 What RAM Controls at Inference Time</h3>
+<h4 id="211-model-fit">2.1.1 Model Fit</h4>
+<ul>
+<li>Model weights must fully reside in memory</li>
+<li>A 70B model at Q4 quantization ≈ 40GB — won&rsquo;t fit in a 24GB GPU VRAM card</li>
+<li>Unified memory (64GB, 128GB) can hold models that discrete GPUs cannot</li>
+</ul>
+<h4 id="212-context-length">2.1.2 Context Length</h4>
+<ul>
+<li>More RAM = longer conversations and larger documents you can feed the model</li>
+<li>Context is the only dimension of &ldquo;capability&rdquo; you can expand at runtime</li>
+</ul>
+<h4 id="213-quantization-quality">2.1.3 Quantization Quality</h4>
+<ul>
+<li>More RAM lets you run higher-precision quantization (Q8 vs Q4)</li>
+<li>Q8 is closer to original trained weights → less quality loss</li>
+<li>This is the closest thing to &ldquo;more RAM = better output&rdquo; — but you&rsquo;re losing less, not gaining</li>
+</ul>
+<h3 id="22-what-ram-cannot-do">2.2 What RAM Cannot Do</h3>
+<ul>
+<li>RAM cannot make a model smarter</li>
+<li>RAM cannot expand the model&rsquo;s knowledge beyond its training cutoff</li>
+<li>RAM cannot improve reasoning depth — that ceiling was set at training</li>
+</ul>
+<hr>
+<h2 id="3-model-size-and-precision-weights-as-data">3. Model Size and Precision: Weights as Data</h2>
+<h3 id="31-how-model-size-maps-to-parameters">3.1 How Model Size Maps to Parameters</h3>
+<ul>
+<li>Each parameter stored in fp16 = 2 bytes</li>
+<li>A 7B parameter model in fp16 ≈ 14GB</li>
+<li>A 70B parameter model in fp16 ≈ 140GB</li>
+</ul>
+<h3 id="32-quantization-trading-precision-for-fit">3.2 Quantization: Trading Precision for Fit</h3>
+<h4 id="321-what-quantization-does">3.2.1 What Quantization Does</h4>
+<ul>
+<li>Reduces bytes-per-parameter (fp16 → int8 → int4)</li>
+<li>Shrinks model footprint at the cost of some fidelity to original weights</li>
+</ul>
+<h4 id="322-quantization-levels-in-practice">3.2.2 Quantization Levels in Practice</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Format</th>
+          <th>Bytes/Param</th>
+          <th>70B Model Size</th>
+          <th>Quality</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>fp16</td>
+          <td>2.0</td>
+          <td>~140GB</td>
+          <td>Full</td>
+      </tr>
+      <tr>
+          <td>Q8</td>
+          <td>1.0</td>
+          <td>~70GB</td>
+          <td>Near-full</td>
+      </tr>
+      <tr>
+          <td>Q4</td>
+          <td>0.5</td>
+          <td>~40GB</td>
+          <td>Good</td>
+      </tr>
+      <tr>
+          <td>Q2</td>
+          <td>0.25</td>
+          <td>~20GB</td>
+          <td>Degraded</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="4-hardware-archetypes-and-their-llm-role">4. Hardware Archetypes and Their LLM Role</h2>
+<h3 id="41-discrete-nvidia-gpu">4.1 Discrete NVIDIA GPU</h3>
+<ul>
+<li>Best for: training, fine-tuning, LoRA/QLoRA</li>
+<li>Constraint: fixed VRAM (24GB on RTX 4090) — hard ceiling for model size</li>
+<li>Strength: CUDA ecosystem, raw TFLOPS</li>
+</ul>
+<h3 id="42-unified-memory-apple-silicon-framework-max">4.2 Unified Memory (Apple Silicon, Framework Max+)</h3>
+<ul>
+<li>Best for: inference, portable local LLMs</li>
+<li>Strength: RAM doubles as VRAM — 64GB or 128GB accessible to the GPU</li>
+<li>Constraint: slower compute, limited training ecosystem (MLX only)</li>
+</ul>
+<h3 id="43-cloud-gpu-runpod-lambda-labs-vastai">4.3 Cloud GPU (RunPod, Lambda Labs, Vast.ai)</h3>
+<ul>
+<li>Best for: serious fine-tuning without owning the hardware</li>
+<li>Renting A100/H100 time is often more practical than buying for occasional training runs</li>
+</ul>
+<hr>
+<h2 id="5-the-intelligence-ceiling-fixed-at-training">5. The Intelligence Ceiling: Fixed at Training</h2>
+<h3 id="51-what-training-defines-forever">5.1 What Training Defines Forever</h3>
+<ul>
+<li>Knowledge cutoff</li>
+<li>Reasoning depth and style</li>
+<li>Language and task capabilities</li>
+</ul>
+<h3 id="52-what-runtime-can-tune">5.2 What Runtime Can Tune</h3>
+<ul>
+<li>Context length (more RAM)</li>
+<li>Output precision (higher quantization)</li>
+<li>Model choice (bigger model = better reasoning, requires more RAM)</li>
+</ul>
+<h3 id="53-the-core-mental-model">5.3 The Core Mental Model</h3>
+<blockquote>
+<p>Training sets the ceiling. Runtime determines how close you get to it.</p>
+</blockquote>
+<hr>
+<h2 id="6-learning-resources-for-first-principles">6. Learning Resources for First Principles</h2>
+<h3 id="61-bottom-up-build-a-gpt-from-scratch">6.1 Bottom-Up: Build a GPT from Scratch</h3>
+<ul>
+<li><strong>Andrej Karpathy — Neural Networks: Zero to Hero</strong> (YouTube)</li>
+<li>Builds a transformer from scratch in PyTorch</li>
+<li>Hardware intuitions emerge naturally from watching the code run</li>
+</ul>
+<h3 id="62-top-down-train-real-models-first-understand-later">6.2 Top-Down: Train Real Models First, Understand Later</h3>
+<ul>
+<li><strong>Deep Learning for Coders with fastai and PyTorch</strong> — Jeremy Howard &amp; Sylvain Gugger</li>
+<li>Practical-first, minimal math prerequisites</li>
+<li>Covers vision, NLP, tabular — broad foundation</li>
+<li>Companion course at course.fast.ai is kept more current than the book</li>
+</ul>
+<h3 id="63-how-they-complement-each-other">6.3 How They Complement Each Other</h3>
+<ul>
+<li>fastai/Howard: breadth across domains, intuition through application</li>
+<li>Karpathy: depth on transformers and language models specifically</li>
+<li>Together: a complete mental model from use case down to matrix multiplication</li>
+</ul>
+
+            </div>
+        </article>
+
+        
+            <aside class="article-outline" aria-label="Page outline">
+                <div class="article-outline__inner">
+                    <p class="article-outline__label">Outline</p>
+                    <div class="article-outline__panel">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-the-two-lives-of-a-model-training-vs-running">1. The Two Lives of a Model: Training vs. Running</a>
+      <ul>
+        <li><a href="#11-training-teaching-the-model">1.1 Training: Teaching the Model</a></li>
+        <li><a href="#12-inference-running-the-model">1.2 Inference: Running the Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-memory-the-runtime-dimension">2. Memory: The Runtime Dimension</a>
+      <ul>
+        <li><a href="#21-what-ram-controls-at-inference-time">2.1 What RAM Controls at Inference Time</a></li>
+        <li><a href="#22-what-ram-cannot-do">2.2 What RAM Cannot Do</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-model-size-and-precision-weights-as-data">3. Model Size and Precision: Weights as Data</a>
+      <ul>
+        <li><a href="#31-how-model-size-maps-to-parameters">3.1 How Model Size Maps to Parameters</a></li>
+        <li><a href="#32-quantization-trading-precision-for-fit">3.2 Quantization: Trading Precision for Fit</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-hardware-archetypes-and-their-llm-role">4. Hardware Archetypes and Their LLM Role</a>
+      <ul>
+        <li><a href="#41-discrete-nvidia-gpu">4.1 Discrete NVIDIA GPU</a></li>
+        <li><a href="#42-unified-memory-apple-silicon-framework-max">4.2 Unified Memory (Apple Silicon, Framework Max+)</a></li>
+        <li><a href="#43-cloud-gpu-runpod-lambda-labs-vastai">4.3 Cloud GPU (RunPod, Lambda Labs, Vast.ai)</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-the-intelligence-ceiling-fixed-at-training">5. The Intelligence Ceiling: Fixed at Training</a>
+      <ul>
+        <li><a href="#51-what-training-defines-forever">5.1 What Training Defines Forever</a></li>
+        <li><a href="#52-what-runtime-can-tune">5.2 What Runtime Can Tune</a></li>
+        <li><a href="#53-the-core-mental-model">5.3 The Core Mental Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-learning-resources-for-first-principles">6. Learning Resources for First Principles</a>
+      <ul>
+        <li><a href="#61-bottom-up-build-a-gpt-from-scratch">6.1 Bottom-Up: Build a GPT from Scratch</a></li>
+        <li><a href="#62-top-down-train-real-models-first-understand-later">6.2 Top-Down: Train Real Models First, Understand Later</a></li>
+        <li><a href="#63-how-they-complement-each-other">6.3 How They Complement Each Other</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </div>
+            </aside>
+        
+    </div>
+
+                </main>
+            </div>
+        </div><footer class="site-footer">
+    <p>KanTuun</p>
+</footer>
+</body>
+</html>
