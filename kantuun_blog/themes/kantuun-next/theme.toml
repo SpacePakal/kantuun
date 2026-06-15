@@ -1,0 +1,7 @@
+name = "kantuun-next"
+license = "MIT"
+description = "Minimal editorial theme for KanTuun."
+homepage = ""
+tags = ["blog", "minimal", "editorial"]
+features = ["blog", "responsive"]
+min_version = "0.111.0"

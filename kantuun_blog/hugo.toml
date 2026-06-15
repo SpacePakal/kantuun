@@ -1,11 +1,12 @@
-baseURL = 'https://spacepakal.github.io/'
-languageCode = 'en-us'
-title = 'KanTuun'
-theme= "atelier"
+baseURL = "https://spacepakal.github.io/"
+languageCode = "en-us"
+title = "KanTuun"
+theme = "kantuun-next"
+ignoreFiles = ["(^|/)\\.obsidian($|/)"]
+
 [frontmatter]
   default = "yaml"
 
-# Main menu items
 [menu]
   [[menu.main]]
     identifier = "about"
@@ -32,27 +33,11 @@ theme= "atelier"
     url = "/indexes/"
     weight = -80
 
-
-
-# Configuration Features
 [params]
-  description = "Notes on learning, publishing, and building clean systems."
+  description = "Notes on learning, experiments, and technical writing."
   header_title = "Space Pakal"
-  header_subtitle = "A calm place for workflow notes, publishing experiments, and technical writing."
-  recent_posts = 5
-  mainSections = ["posts", "post", "blog"]
-  [[params.social]]
-    fa_icon = "fab fa-github fa-1x"          # Font Awesome icon class
-    href = "http://github.com/youruser"      # Link to associate with icon (http://, https://, mailto:)
-  [[params.social]]
-    fa_icon = "fab fa-linkedin-in fa-1x"
-    href = ""
-  [[params.social]]
-    fa_icon = "fab fa-twitter fa-1x"
-    href = ""
-  [[params.social]]
-    fa_icon = "fas fa-at fa-1x"
-    href = ""
+  header_subtitle = "Notes on learning, experiments, and technical writing."
+  mainSections = ["posts"]
 
 [taxonomies]
   category = "categories"

@@ -1,72 +1,36 @@
 ---
-date : '2024-12-29T21:15:41-05:00'
-draft : false
-title : 'About'
+title: About me
+date: 2026-05-31
+draft: false
+slug: about
+tags: []
+categories: []
+description: About Space Pakal
 ---
+This is me writing about myself and this blog post while sitting in the kitchen, waiting for my chicken to cook. How long will my chicken take to cook?
+  
+Under normal circumstances, I’d be watching YouTube videos on my iPad while waiting for my food to be done. Instead, I am doing this: sitting in the kitchen, looking at my chicken from a distance, and writing. I suppose there is something to be said about creating spaces and environments that encourage certain actions and interactions.
 
-## KanTuun
+What prompted this?  
 
-KanTuun is a way of thinking about knowledge as something built deliberately, stone by stone.
+I was reading a book about deep learning. At the end of the second chapter, there was a strong encouragement to start a blog. I already have one. I just haven’t really posted anything.
 
-The name comes from an idea that has stayed with me: `kan` as something elevated, sacred, or oriented toward what is above us, and `tuun` as stone. Whether or not that interpretation is perfect in a scholarly sense, it gives me a working metaphor that feels true to the project.
+Why not?
 
-Every post begins as a single stone.
+For a long time, I have treated blog posts as if they were academic publications: something that needs to be rigorously prepared, studied, researched, tested, documented, edited, and only then released. As if every post somehow reflects the quality of my work and character.
 
-On its own, a stone matters because it has weight, shape, and placement. But the deeper value comes from what happens when one stone is placed beside another with intention. Over time, those stones form a structure.
+There are places for that. This is not one of them.
 
-That is how this blog is meant to grow.
+This blog is primarily a place for me to write about the things I am working on: ideas and questions I have, experiments I am running, technologies I am learning, solutions I am building, and the countless topics that continuously capture my curiosity.
 
-## A structure of ideas
+The goal is simple. Writing helps me sharpen my understanding of whatever I am exploring. It gives me an opportunity to reflect on the work itself and on the unexpected connections that emerge along the way.
 
-I do not think of writing as a stream of disconnected posts.
+This blog is also a reference source, at least for me.
 
-I think of it as building an architecture of knowledge:
+I often find myself building note-taking systems, databases, and organizational structures to store information for later. But why not use my website instead? Why not publish the things I know I will eventually come back to?
 
-- each post is a placed idea
-- each outline gives that idea internal structure
-- each link creates a relationship with another idea
-- each index or map helps reveal the larger shape that is emerging
+This is not a place where I write with the expectation that everything I publish is an absolute truth. This is a place to explore and to share a bit of that exploration. Perhaps those things will prove useful to someone else as well. If so, then that is a positive grain of sand.
 
-The goal is not just to publish content. The goal is to build something coherent enough that both I and other people can return to it, move through it, and find orientation inside it.
+Now then, about me. Who am I? I guess that is the question. Sometimes I am a security consultant trying to understand how systems fail. Sometimes I am a student learning something entirely new. Sometimes I am writing notes while waiting for chicken to cook.
 
-## Why structure matters
-
-I tend to think in hierarchies, outlines, and mental models.
-
-That means I often understand a subject by seeing:
-
-- the larger concept
-- the sections inside it
-- the ideas nested within those sections
-- the relationships between one concept and another
-
-This is why the site is moving toward outlines, indexes, and connections across posts. Those features are not just design choices. They reflect the actual way I try to learn, organize, and share knowledge.
-
-## Stone by stone
-
-In the same way that a structure is not built all at once, understanding is not built all at once either.
-
-One post may explain a concept.
-
-Another may refine it.
-
-Another may connect it to a broader workflow, a tool, or a deeper question.
-
-Eventually, those pieces become more than a collection. They become a form.
-
-That is the real purpose of KanTuun: to make learning visible as a structure under construction.
-
-## A shared ascent
-
-Part of what makes the metaphor meaningful to me is the idea that a built structure is not only something to look at. It is also something that helps orient people toward a larger view.
-
-In that sense, this blog is an attempt to build upward through connected ideas:
-
-- to clarify what I am learning
-- to preserve it in a reusable form
-- to create paths other people can follow
-- to share knowledge as something structured, not scattered
-
-If this project works, it will become more than a blog.
-
-It will become a living map of thought, built with care, one stone at a time.
+In the meantime, my name is Hector.
