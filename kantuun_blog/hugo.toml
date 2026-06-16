@@ -26,13 +26,6 @@ ignoreFiles = ["(^|/)\\.obsidian($|/)"]
     title = "Categories"
     url = "/categories/"
     weight = -90
-  [[menu.main]]
-    identifier = "indexes"
-    name = "Indexes"
-    title = "Indexes"
-    url = "/indexes/"
-    weight = -80
-
 [params]
   description = "Notes on learning, experiments, and technical writing."
   header_title = "Space Pakal"
